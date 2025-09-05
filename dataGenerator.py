@@ -32,9 +32,7 @@ class FlightNERGenerator:
         # more Cities can be added later
         self.CITIES = [
             "New York", "Los Angeles", "Paris", "London", "Tokyo", "Dubai", "Singapore",
-            "Sydney", "Boston", "Madrid", "Mumbai", "Delhi", "Bangalore", "San Francisco",
-            "Chicago", "Toronto", "Rome", "Barcelona", "Berlin", "Hong Kong", "Seoul",
-            "Bangkok", "Istanbul", "Melbourne", 
+            "Sydney", "Boston", "Madrid", "Mumbai", "Delhi", "Bangalore", "San Francisco","Chicago", "Toronto", "Rome", "Barcelona", "Berlin", "Hong Kong", "Seoul","Bangkok", "Istanbul", "Melbourne", "Jakarta", "Kuala Lumpur", "Cairo", "Doha","San Diego", "Seattle", "Washington D.C.", "Vancouver", "Mexico City", "Buenos Aires", "Lima", "Santiago", "Johannesburg", "Cape Town", "Athens"
         ]
         # more AirLines can be added later
         self.AIRLINES = [
@@ -78,7 +76,7 @@ class FlightNERGenerator:
     def ordinal(self, n: int) -> str:
         return "%d%s" % (n, "th" if 11 <= n % 100 <= 13 else {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th"))
 
-    def random_future_date(self, days_range: int = 180) -> datetime:
+    def random_future_date(self, days_range: int = 360) -> datetime:
         return self.base_date + timedelta(days=random.randint(1, days_range))
 
     def format_date_variations(self, dt: datetime) -> str:
@@ -266,5 +264,5 @@ class FlightNERGenerator:
 
 if __name__ == "__main__":
     generator = FlightNERGenerator(out_dir=".", seed=123)
-    data = generator.generate(n=1000)
+    data = generator.generate(n=5000)
     generator.save_json(data, filename="data/flight_spacy_dataset.json")
